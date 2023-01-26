@@ -2,7 +2,7 @@
 -- Host:                         127.0.0.1
 -- Server Version:               10.4.27-MariaDB - mariadb.org binary distribution
 -- Server Betriebssystem:        Win64
--- HeidiSQL Version:             12.3.0.6589
+-- HeidiSQL Version:             12.2.0.6576
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -38,7 +38,6 @@ CREATE TABLE IF NOT EXISTS `bestellung` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Exportiere Daten aus Tabelle webshop.bestellung: ~0 rows (ungefähr)
-DELETE FROM `bestellung`;
 
 -- Exportiere Struktur von Tabelle webshop.einkaufkorb
 CREATE TABLE IF NOT EXISTS `einkaufkorb` (
@@ -48,7 +47,6 @@ CREATE TABLE IF NOT EXISTS `einkaufkorb` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Exportiere Daten aus Tabelle webshop.einkaufkorb: ~0 rows (ungefähr)
-DELETE FROM `einkaufkorb`;
 
 -- Exportiere Struktur von Tabelle webshop.einkaufskorbinhalt
 CREATE TABLE IF NOT EXISTS `einkaufskorbinhalt` (
@@ -65,7 +63,6 @@ CREATE TABLE IF NOT EXISTS `einkaufskorbinhalt` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Exportiere Daten aus Tabelle webshop.einkaufskorbinhalt: ~0 rows (ungefähr)
-DELETE FROM `einkaufskorbinhalt`;
 
 -- Exportiere Struktur von Tabelle webshop.kunde
 CREATE TABLE IF NOT EXISTS `kunde` (
@@ -87,7 +84,6 @@ CREATE TABLE IF NOT EXISTS `kunde` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Exportiere Daten aus Tabelle webshop.kunde: ~0 rows (ungefähr)
-DELETE FROM `kunde`;
 
 -- Exportiere Struktur von Tabelle webshop.nutzer
 CREATE TABLE IF NOT EXISTS `nutzer` (
@@ -98,7 +94,6 @@ CREATE TABLE IF NOT EXISTS `nutzer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Exportiere Daten aus Tabelle webshop.nutzer: ~0 rows (ungefähr)
-DELETE FROM `nutzer`;
 
 -- Exportiere Struktur von Tabelle webshop.produkt
 CREATE TABLE IF NOT EXISTS `produkt` (
@@ -111,132 +106,156 @@ CREATE TABLE IF NOT EXISTS `produkt` (
   `Größe` varchar(3) DEFAULT NULL,
   `Preis` decimal(20,2) DEFAULT NULL,
   `Bestand` int(11) DEFAULT NULL,
-  PRIMARY KEY (`Produkt_ID`)
+  `Produkt_Preid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Produkt_ID`),
+  KEY `FK_produkt_produktpreview` (`Produkt_Preid`),
+  CONSTRAINT `FK_produkt_produktpreview` FOREIGN KEY (`Produkt_Preid`) REFERENCES `produktpreview` (`produkt_preid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Exportiere Daten aus Tabelle webshop.produkt: ~120 rows (ungefähr)
-DELETE FROM `produkt`;
-INSERT INTO `produkt` (`Produkt_ID`, `Hersteller`, `Kategorie`, `Name`, `Beschreibung`, `Farbe`, `Größe`, `Preis`, `Bestand`) VALUES
-	(1, 'DruckIndustry', 'T-Shirt Herren', 'T-Shirt Blau XS', 'T-Shirt mit Aufdruck', 'Blau', 'XS', 19.99, 54),
-	(2, 'DruckIndustry', 'T-Shirt Herren', 'T-Shirt Blau S', 'T-Shirt mit Aufdruck', 'Blau', 'S', 19.99, 62),
-	(3, 'DruckIndustry', 'T-Shirt Herren', 'T-Shirt Blau M', 'T-Shirt mit Aufdruck', 'Blau', 'M', 19.99, 33),
-	(4, 'DruckIndustry', 'T-Shirt Herren', 'T-Shirt Blau L', 'T-Shirt mit Aufdruck', 'Blau', 'L', 19.99, 51),
-	(5, 'DruckIndustry', 'T-Shirt Herren', 'T-Shirt Blau XL', 'T-Shirt mit Aufdruck', 'Blau', 'XL', 19.99, 44),
-	(6, 'DruckIndustry', 'T-Shirt Herren', 'T-Shirt Blau XXL', 'T-Shirt mit Aufdruck', 'Blau', 'XXL', 19.99, 38),
-	(7, 'Druck und Geschmeidig SE', 'T-Shirt Herren', 'T-Shirt Grau XS', 'T-Shirt mit Aufdruck', 'Grau', 'XS', 19.99, 45),
-	(8, 'Druck und Geschmeidig SE', 'T-Shirt Herren', 'T-Shirt Grau S', 'T-Shirt mit Aufdruck', 'Grau', 'S', 19.99, 55),
-	(9, 'Druck und Geschmeidig SE', 'T-Shirt Herren', 'T-Shirt Grau M', 'T-Shirt mit Aufdruck', 'Grau', 'M', 19.99, 69),
-	(10, 'Druck und Geschmeidig SE', 'T-Shirt Herren', 'T-Shirt Grau L', 'T-Shirt mit Aufdruck', 'Grau', 'L', 19.99, 25),
-	(11, 'Druck und Geschmeidig SE', 'T-Shirt Herren', 'T-Shirt Grau XL', 'T-Shirt mit Aufdruck', 'Grau', 'XL', 19.99, 41),
-	(12, 'Druck und Geschmeidig SE', 'T-Shirt Herren', 'T-Shirt Grau XXL', 'T-Shirt mit Aufdruck', 'Grau', 'XXL', 19.99, 32),
-	(13, 'DruckIndustry', 'T-Shirt Herren', 'T-Shirt Rot XS', 'T-Shirt mit Aufdruck', 'Rot', 'XS', 19.99, 42),
-	(14, 'DruckIndustry', 'T-Shirt Herren', 'T-Shirt Rot S', 'T-Shirt mit Aufdruck', 'Rot', 'S', 19.99, 56),
-	(15, 'DruckIndustry', 'T-Shirt Herren', 'T-Shirt Rot M', 'T-Shirt mit Aufdruck', 'Rot', 'M', 19.99, 70),
-	(16, 'DruckIndustry', 'T-Shirt Herren', 'T-Shirt Rot L', 'T-Shirt mit Aufdruck', 'Rot', 'L', 19.99, 24),
-	(17, 'DruckIndustry', 'T-Shirt Herren', 'T-Shirt Rot XL', 'T-Shirt mit Aufdruck', 'Rot', 'XL', 19.99, 40),
-	(18, 'DruckIndustry', 'T-Shirt Herren', 'T-Shirt Rot XXL', 'T-Shirt mit Aufdruck', 'Rot', 'XXL', 19.99, 30),
-	(19, 'AufdruckService GmbH', 'T-Shirt Herren', 'T-Shirt Weiß XS', 'T-Shirt mit Aufdruck', 'Weiß', 'XS', 19.99, 27),
-	(20, 'AufdruckService GmbH', 'T-Shirt Herren', 'T-Shirt Weiß S', 'T-Shirt mit Aufdruck', 'Weiß', 'S', 19.99, 66),
-	(21, 'AufdruckService GmbH', 'T-Shirt Herren', 'T-Shirt Weiß M', 'T-Shirt mit Aufdruck', 'Weiß', 'M', 19.99, 12),
-	(22, 'AufdruckService GmbH', 'T-Shirt Herren', 'T-Shirt Weiß L', 'T-Shirt mit Aufdruck', 'Weiß', 'L', 19.99, 46),
-	(23, 'AufdruckService GmbH', 'T-Shirt Herren', 'T-Shirt Weiß XL', 'T-Shirt mit Aufdruck', 'Weiß', 'XL', 19.99, 83),
-	(24, 'AufdruckService GmbH', 'T-Shirt Herren', 'T-Shirt Weiß XXL', 'T-Shirt mit Aufdruck', 'Weiß', 'XXL', 19.99, 72),
-	(25, 'AufdruckService GmbH', 'T-Shirt Herren', 'T-Shirt Schwarz XS', 'T-Shirt mit Aufdruck', 'Schwarz', 'XS', 19.99, 88),
-	(26, 'AufdruckService GmbH', 'T-Shirt Herren', 'T-Shirt Schwarz S', 'T-Shirt mit Aufdruck', 'Schwarz', 'S', 19.99, 49),
-	(27, 'AufdruckService GmbH', 'T-Shirt Herren', 'T-Shirt Schwarz M', 'T-Shirt mit Aufdruck', 'Schwarz', 'M', 19.99, 75),
-	(28, 'AufdruckService GmbH', 'T-Shirt Herren', 'T-Shirt Schwarz L', 'T-Shirt mit Aufdruck', 'Schwarz', 'L', 19.99, 47),
-	(29, 'AufdruckService GmbH', 'T-Shirt Herren', 'T-Shirt Schwarz XL', 'T-Shirt mit Aufdruck', 'Schwarz', 'XL', 19.99, 22),
-	(30, 'AufdruckService GmbH', 'T-Shirt Herren', 'T-Shirt Schwarz XXL', 'T-Shirt mit Aufdruck', 'Schwarz', 'XXL', 19.99, 26),
-	(31, 'HOODie ForEVER UG', 'Hoodie Herren', 'Hoodie Grau XS', 'Hoodie mit Aufdruck', 'Grau', 'XS', 39.99, 55),
-	(32, 'HOODie ForEVER UG', 'Hoodie Herren', 'Hoodie Grau S', 'Hoodie mit Aufdruck', 'Grau', 'S', 39.99, 55),
-	(33, 'HOODie ForEVER UG', 'Hoodie Herren', 'Hoodie Grau M', 'Hoodie mit Aufdruck', 'Grau', 'M', 39.99, 63),
-	(34, 'HOODie ForEVER UG', 'Hoodie Herren', 'Hoodie Grau L', 'Hoodie mit Aufdruck', 'Grau', 'L', 39.99, 85),
-	(35, 'HOODie ForEVER UG', 'Hoodie Herren', 'Hoodie Grau XL', 'Hoodie mit Aufdruck', 'Grau', 'XL', 39.99, 55),
-	(36, 'HOODie ForEVER UG', 'Hoodie Herren', 'Hoodie Grau XXL', 'Hoodie mit Aufdruck', 'Grau', 'XXL', 39.99, 34),
-	(37, 'HOODie ForEVER UG', 'Hoodie Herren', 'Hoodie Blau XS', 'Hoodie mit Aufdruck', 'Blau', 'XS', 39.99, 77),
-	(38, 'HOODie ForEVER UG', 'Hoodie Herren', 'Hoodie Blau S', 'Hoodie mit Aufdruck', 'Blau', 'S', 39.99, 56),
-	(39, 'HOODie ForEVER UG', 'Hoodie Herren', 'Hoodie Blau M', 'Hoodie mit Aufdruck', 'Blau', 'M', 39.99, 76),
-	(40, 'HOODie ForEVER UG', 'Hoodie Herren', 'Hoodie Blau L', 'Hoodie mit Aufdruck', 'Blau', 'L', 39.99, 25),
-	(41, 'HOODie ForEVER UG', 'Hoodie Herren', 'Hoodie Blau XL', 'Hoodie mit Aufdruck', 'Blau', 'XL', 39.99, 41),
-	(42, 'HOODie ForEVER UG', 'Hoodie Herren', 'Hoodie Blau XXL', 'Hoodie mit Aufdruck', 'Blau', 'XXL', 39.99, 32),
-	(43, 'Druck und Geschmeidig SE', 'Hoodie Herren', 'Hoodie Rot XS', 'Hoodie mit Aufdruck', 'Rot', 'XS', 39.99, 45),
-	(44, 'Druck und Geschmeidig SE', 'Hoodie Herren', 'Hoodie Rot S', 'Hoodie mit Aufdruck', 'Rot', 'S', 39.99, 55),
-	(45, 'Druck und Geschmeidig SE', 'Hoodie Herren', 'Hoodie Rot M', 'Hoodie mit Aufdruck', 'Rot', 'M', 39.99, 34),
-	(46, 'Druck und Geschmeidig SE', 'Hoodie Herren', 'Hoodie Rot L', 'Hoodie mit Aufdruck', 'Rot', 'L', 39.99, 22),
-	(47, 'Druck und Geschmeidig SE', 'Hoodie Herren', 'Hoodie Rot XL', 'Hoodie mit Aufdruck', 'Rot', 'XL', 39.99, 11),
-	(48, 'Druck und Geschmeidig SE', 'Hoodie Herren', 'Hoodie Rot XXL', 'Hoodie mit Aufdruck', 'Rot', 'XXL', 39.99, 3),
-	(49, 'ReinerTragegenuss oHG', 'Hoodie Herren', 'Hoodie Schwarz XS', 'Hoodie mit Aufdruck', 'Schwarz', 'XS', 39.99, 45),
-	(50, 'ReinerTragegenuss oHG', 'Hoodie Herren', 'Hoodie Schwarz S', 'Hoodie mit Aufdruck', 'Schwarz', 'S', 39.99, 2),
-	(51, 'ReinerTragegenuss oHG', 'Hoodie Herren', 'Hoodie Schwarz M', 'Hoodie mit Aufdruck', 'Schwarz', 'M', 39.99, 35),
-	(52, 'ReinerTragegenuss oHG', 'Hoodie Herren', 'Hoodie Schwarz L', 'Hoodie mit Aufdruck', 'Schwarz', 'L', 39.99, 55),
-	(53, 'ReinerTragegenuss oHG', 'Hoodie Herren', 'Hoodie Schwarz XL', 'Hoodie mit Aufdruck', 'Schwarz', 'XL', 39.99, 74),
-	(54, 'ReinerTragegenuss oHG', 'Hoodie Herren', 'Hoodie Schwarz XXL', 'Hoodie mit Aufdruck', 'Schwarz', 'XXL', 39.99, 55),
-	(55, 'ReinerTragegenuss oHG', 'Hoodie Herren', 'Hoodie Weiß XS', 'Hoodie mit Aufdruck', 'Weiß', 'XS', 39.99, 45),
-	(56, 'ReinerTragegenuss oHG', 'Hoodie Herren', 'Hoodie Weiß S', 'Hoodie mit Aufdruck', 'Weiß', 'S', 39.99, 66),
-	(57, 'ReinerTragegenuss oHG', 'Hoodie Herren', 'Hoodie Weiß M', 'Hoodie mit Aufdruck', 'Weiß', 'M', 39.99, 44),
-	(58, 'ReinerTragegenuss oHG', 'Hoodie Herren', 'Hoodie Weiß L', 'Hoodie mit Aufdruck', 'Weiß', 'L', 39.99, 34),
-	(59, 'ReinerTragegenuss oHG', 'Hoodie Herren', 'Hoodie Weiß XL', 'Hoodie mit Aufdruck', 'Weiß', 'XL', 39.99, 41),
-	(60, 'ReinerTragegenuss oHG', 'Hoodie Herren', 'Hoodie Weiß XXL', 'Hoodie mit Aufdruck', 'Weiß', 'XXL', 39.99, 88),
-	(61, 'DruckIndustry', 'T-Shirt Damen', 'T-Shirt Blau XS', 'T-Shirt mit Aufdruck', 'Blau', 'XS', 19.99, 54),
-	(62, 'DruckIndustry', 'T-Shirt Damen', 'T-Shirt Blau S', 'T-Shirt mit Aufdruck', 'Blau', 'S', 19.99, 62),
-	(63, 'DruckIndustry', 'T-Shirt Damen', 'T-Shirt Blau M', 'T-Shirt mit Aufdruck', 'Blau', 'M', 19.99, 33),
-	(64, 'DruckIndustry', 'T-Shirt Damen', 'T-Shirt Blau L', 'T-Shirt mit Aufdruck', 'Blau', 'L', 19.99, 51),
-	(65, 'DruckIndustry', 'T-Shirt Damen', 'T-Shirt Blau XL', 'T-Shirt mit Aufdruck', 'Blau', 'XL', 19.99, 44),
-	(66, 'DruckIndustry', 'T-Shirt Damen', 'T-Shirt Blau XXL', 'T-Shirt mit Aufdruck', 'Blau', 'XXL', 19.99, 38),
-	(67, 'Druck und Geschmeidig SE', 'T-Shirt Damen', 'T-Shirt Grau XS', 'T-Shirt mit Aufdruck', 'Grau', 'XS', 19.99, 45),
-	(68, 'Druck und Geschmeidig SE', 'T-Shirt Damen', 'T-Shirt Grau S', 'T-Shirt mit Aufdruck', 'Grau', 'S', 19.99, 55),
-	(69, 'Druck und Geschmeidig SE', 'T-Shirt Damen', 'T-Shirt Grau M', 'T-Shirt mit Aufdruck', 'Grau', 'M', 19.99, 69),
-	(70, 'Druck und Geschmeidig SE', 'T-Shirt Damen', 'T-Shirt Grau L', 'T-Shirt mit Aufdruck', 'Grau', 'L', 19.99, 25),
-	(71, 'Druck und Geschmeidig SE', 'T-Shirt Damen', 'T-Shirt Grau XL', 'T-Shirt mit Aufdruck', 'Grau', 'XL', 19.99, 41),
-	(72, 'Druck und Geschmeidig SE', 'T-Shirt Damen', 'T-Shirt Grau XXL', 'T-Shirt mit Aufdruck', 'Grau', 'XXL', 19.99, 32),
-	(73, 'DruckIndustry', 'T-Shirt Damen', 'T-Shirt Rot XS', 'T-Shirt mit Aufdruck', 'Rot', 'XS', 19.99, 42),
-	(74, 'DruckIndustry', 'T-Shirt Damen', 'T-Shirt Rot S', 'T-Shirt mit Aufdruck', 'Rot', 'S', 19.99, 56),
-	(75, 'DruckIndustry', 'T-Shirt Damen', 'T-Shirt Rot M', 'T-Shirt mit Aufdruck', 'Rot', 'M', 19.99, 70),
-	(76, 'DruckIndustry', 'T-Shirt Damen', 'T-Shirt Rot L', 'T-Shirt mit Aufdruck', 'Rot', 'L', 19.99, 24),
-	(77, 'DruckIndustry', 'T-Shirt Damen', 'T-Shirt Rot XL', 'T-Shirt mit Aufdruck', 'Rot', 'XL', 19.99, 40),
-	(78, 'DruckIndustry', 'T-Shirt Damen', 'T-Shirt Rot XXL', 'T-Shirt mit Aufdruck', 'Rot', 'XXL', 19.99, 30),
-	(79, 'AufdruckService GmbH', 'T-Shirt Damen', 'T-Shirt Weiß XS', 'T-Shirt mit Aufdruck', 'Weiß', 'XS', 19.99, 27),
-	(80, 'AufdruckService GmbH', 'T-Shirt Damen', 'T-Shirt Weiß S', 'T-Shirt mit Aufdruck', 'Weiß', 'S', 19.99, 66),
-	(81, 'AufdruckService GmbH', 'T-Shirt Damen', 'T-Shirt Weiß M', 'T-Shirt mit Aufdruck', 'Weiß', 'M', 19.99, 12),
-	(82, 'AufdruckService GmbH', 'T-Shirt Damen', 'T-Shirt Weiß L', 'T-Shirt mit Aufdruck', 'Weiß', 'L', 19.99, 46),
-	(83, 'AufdruckService GmbH', 'T-Shirt Damen', 'T-Shirt Weiß XL', 'T-Shirt mit Aufdruck', 'Weiß', 'XL', 19.99, 83),
-	(84, 'AufdruckService GmbH', 'T-Shirt Damen', 'T-Shirt Weiß XXL', 'T-Shirt mit Aufdruck', 'Weiß', 'XXL', 19.99, 72),
-	(85, 'AufdruckService GmbH', 'T-Shirt Damen', 'T-Shirt Schwarz XS', 'T-Shirt mit Aufdruck', 'Schwarz', 'XS', 19.99, 88),
-	(86, 'AufdruckService GmbH', 'T-Shirt Damen', 'T-Shirt Schwarz S', 'T-Shirt mit Aufdruck', 'Schwarz', 'S', 19.99, 49),
-	(87, 'AufdruckService GmbH', 'T-Shirt Damen', 'T-Shirt Schwarz M', 'T-Shirt mit Aufdruck', 'Schwarz', 'M', 19.99, 75),
-	(88, 'AufdruckService GmbH', 'T-Shirt Damen', 'T-Shirt Schwarz L', 'T-Shirt mit Aufdruck', 'Schwarz', 'L', 19.99, 47),
-	(89, 'AufdruckService GmbH', 'T-Shirt Damen', 'T-Shirt Schwarz XL', 'T-Shirt mit Aufdruck', 'Schwarz', 'XL', 19.99, 22),
-	(90, 'AufdruckService GmbH', 'T-Shirt Damen', 'T-Shirt Schwarz XXL', 'T-Shirt mit Aufdruck', 'Schwarz', 'XXL', 19.99, 26),
-	(91, 'HOODie ForEVER UG', 'Hoodie Damen', 'Hoodie Grau XS', 'Hoodie mit Aufdruck', 'Grau', 'XS', 39.99, 55),
-	(92, 'HOODie ForEVER UG', 'Hoodie Damen', 'Hoodie Grau S', 'Hoodie mit Aufdruck', 'Grau', 'S', 39.99, 55),
-	(93, 'HOODie ForEVER UG', 'Hoodie Damen', 'Hoodie Grau M', 'Hoodie mit Aufdruck', 'Grau', 'M', 39.99, 63),
-	(94, 'HOODie ForEVER UG', 'Hoodie Damen', 'Hoodie Grau L', 'Hoodie mit Aufdruck', 'Grau', 'L', 39.99, 85),
-	(95, 'HOODie ForEVER UG', 'Hoodie Damen', 'Hoodie Grau XL', 'Hoodie mit Aufdruck', 'Grau', 'XL', 39.99, 55),
-	(96, 'HOODie ForEVER UG', 'Hoodie Damen', 'Hoodie Grau XXL', 'Hoodie mit Aufdruck', 'Grau', 'XXL', 39.99, 34),
-	(97, 'HOODie ForEVER UG', 'Hoodie Damen', 'Hoodie Blau XS', 'Hoodie mit Aufdruck', 'Blau', 'XS', 39.99, 77),
-	(98, 'HOODie ForEVER UG', 'Hoodie Damen', 'Hoodie Blau S', 'Hoodie mit Aufdruck', 'Blau', 'S', 39.99, 56),
-	(99, 'HOODie ForEVER UG', 'Hoodie Damen', 'Hoodie Blau M', 'Hoodie mit Aufdruck', 'Blau', 'M', 39.99, 76),
-	(100, 'HOODie ForEVER UG', 'Hoodie Damen', 'Hoodie Blau L', 'Hoodie mit Aufdruck', 'Blau', 'L', 39.99, 25),
-	(101, 'HOODie ForEVER UG', 'Hoodie Damen', 'Hoodie Blau XL', 'Hoodie mit Aufdruck', 'Blau', 'XL', 39.99, 41),
-	(102, 'HOODie ForEVER UG', 'Hoodie Damen', 'Hoodie Blau XXL', 'Hoodie mit Aufdruck', 'Blau', 'XXL', 39.99, 32),
-	(103, 'Druck und Geschmeidig SE', 'Hoodie Damen', 'Hoodie Rot XS', 'Hoodie mit Aufdruck', 'Rot', 'XS', 39.99, 45),
-	(104, 'Druck und Geschmeidig SE', 'Hoodie Damen', 'Hoodie Rot S', 'Hoodie mit Aufdruck', 'Rot', 'S', 39.99, 55),
-	(105, 'Druck und Geschmeidig SE', 'Hoodie Damen', 'Hoodie Rot M', 'Hoodie mit Aufdruck', 'Rot', 'M', 39.99, 34),
-	(106, 'Druck und Geschmeidig SE', 'Hoodie Damen', 'Hoodie Rot L', 'Hoodie mit Aufdruck', 'Rot', 'L', 39.99, 22),
-	(107, 'Druck und Geschmeidig SE', 'Hoodie Damen', 'Hoodie Rot XL', 'Hoodie mit Aufdruck', 'Rot', 'XL', 39.99, 11),
-	(108, 'Druck und Geschmeidig SE', 'Hoodie Damen', 'Hoodie Rot XXL', 'Hoodie mit Aufdruck', 'Rot', 'XXL', 39.99, 3),
-	(109, 'ReinerTragegenuss oHG', 'Hoodie Damen', 'Hoodie Schwarz XS', 'Hoodie mit Aufdruck', 'Schwarz', 'XS', 39.99, 45),
-	(110, 'ReinerTragegenuss oHG', 'Hoodie Damen', 'Hoodie Schwarz S', 'Hoodie mit Aufdruck', 'Schwarz', 'S', 39.99, 2),
-	(111, 'ReinerTragegenuss oHG', 'Hoodie Damen', 'Hoodie Schwarz M', 'Hoodie mit Aufdruck', 'Schwarz', 'M', 39.99, 35),
-	(112, 'ReinerTragegenuss oHG', 'Hoodie Damen', 'Hoodie Schwarz L', 'Hoodie mit Aufdruck', 'Schwarz', 'L', 39.99, 55),
-	(113, 'ReinerTragegenuss oHG', 'Hoodie Damen', 'Hoodie Schwarz XL', 'Hoodie mit Aufdruck', 'Schwarz', 'XL', 39.99, 74),
-	(114, 'ReinerTragegenuss oHG', 'Hoodie Damen', 'Hoodie Schwarz XXL', 'Hoodie mit Aufdruck', 'Schwarz', 'XXL', 39.99, 55),
-	(115, 'ReinerTragegenuss oHG', 'Hoodie Damen', 'Hoodie Weiß XS', 'Hoodie mit Aufdruck', 'Weiß', 'XS', 39.99, 45),
-	(116, 'ReinerTragegenuss oHG', 'Hoodie Damen', 'Hoodie Weiß S', 'Hoodie mit Aufdruck', 'Weiß', 'S', 39.99, 66),
-	(117, 'ReinerTragegenuss oHG', 'Hoodie Damen', 'Hoodie Weiß M', 'Hoodie mit Aufdruck', 'Weiß', 'M', 39.99, 44),
-	(118, 'ReinerTragegenuss oHG', 'Hoodie Damen', 'Hoodie Weiß L', 'Hoodie mit Aufdruck', 'Weiß', 'L', 39.99, 34),
-	(119, 'ReinerTragegenuss oHG', 'Hoodie Damen', 'Hoodie Weiß XL', 'Hoodie mit Aufdruck', 'Weiß', 'XL', 39.99, 41),
-	(120, 'ReinerTragegenuss oHG', 'Hoodie Damen', 'Hoodie Weiß XXL', 'Hoodie mit Aufdruck', 'Weiß', 'XXL', 39.99, 88);
+INSERT INTO `produkt` (`Produkt_ID`, `Hersteller`, `Kategorie`, `Name`, `Beschreibung`, `Farbe`, `Größe`, `Preis`, `Bestand`, `Produkt_Preid`) VALUES
+	(1, 'DruckIndustry', 'T-Shirt Herren', 'T-Shirt Blau XS', 'T-Shirt mit Aufdruck', 'Blau', 'XS', 19.99, 54, NULL),
+	(2, 'DruckIndustry', 'T-Shirt Herren', 'T-Shirt Blau S', 'T-Shirt mit Aufdruck', 'Blau', 'S', 19.99, 62, NULL),
+	(3, 'DruckIndustry', 'T-Shirt Herren', 'T-Shirt Blau M', 'T-Shirt mit Aufdruck', 'Blau', 'M', 19.99, 33, NULL),
+	(4, 'DruckIndustry', 'T-Shirt Herren', 'T-Shirt Blau L', 'T-Shirt mit Aufdruck', 'Blau', 'L', 19.99, 51, NULL),
+	(5, 'DruckIndustry', 'T-Shirt Herren', 'T-Shirt Blau XL', 'T-Shirt mit Aufdruck', 'Blau', 'XL', 19.99, 44, NULL),
+	(6, 'DruckIndustry', 'T-Shirt Herren', 'T-Shirt Blau XXL', 'T-Shirt mit Aufdruck', 'Blau', 'XXL', 19.99, 38, NULL),
+	(7, 'Druck und Geschmeidig SE', 'T-Shirt Herren', 'T-Shirt Grau XS', 'T-Shirt mit Aufdruck', 'Grau', 'XS', 19.99, 45, NULL),
+	(8, 'Druck und Geschmeidig SE', 'T-Shirt Herren', 'T-Shirt Grau S', 'T-Shirt mit Aufdruck', 'Grau', 'S', 19.99, 55, NULL),
+	(9, 'Druck und Geschmeidig SE', 'T-Shirt Herren', 'T-Shirt Grau M', 'T-Shirt mit Aufdruck', 'Grau', 'M', 19.99, 69, NULL),
+	(10, 'Druck und Geschmeidig SE', 'T-Shirt Herren', 'T-Shirt Grau L', 'T-Shirt mit Aufdruck', 'Grau', 'L', 19.99, 25, NULL),
+	(11, 'Druck und Geschmeidig SE', 'T-Shirt Herren', 'T-Shirt Grau XL', 'T-Shirt mit Aufdruck', 'Grau', 'XL', 19.99, 41, NULL),
+	(12, 'Druck und Geschmeidig SE', 'T-Shirt Herren', 'T-Shirt Grau XXL', 'T-Shirt mit Aufdruck', 'Grau', 'XXL', 19.99, 32, NULL),
+	(13, 'DruckIndustry', 'T-Shirt Herren', 'T-Shirt Rot XS', 'T-Shirt mit Aufdruck', 'Rot', 'XS', 19.99, 42, NULL),
+	(14, 'DruckIndustry', 'T-Shirt Herren', 'T-Shirt Rot S', 'T-Shirt mit Aufdruck', 'Rot', 'S', 19.99, 56, NULL),
+	(15, 'DruckIndustry', 'T-Shirt Herren', 'T-Shirt Rot M', 'T-Shirt mit Aufdruck', 'Rot', 'M', 19.99, 70, NULL),
+	(16, 'DruckIndustry', 'T-Shirt Herren', 'T-Shirt Rot L', 'T-Shirt mit Aufdruck', 'Rot', 'L', 19.99, 24, NULL),
+	(17, 'DruckIndustry', 'T-Shirt Herren', 'T-Shirt Rot XL', 'T-Shirt mit Aufdruck', 'Rot', 'XL', 19.99, 40, NULL),
+	(18, 'DruckIndustry', 'T-Shirt Herren', 'T-Shirt Rot XXL', 'T-Shirt mit Aufdruck', 'Rot', 'XXL', 19.99, 30, NULL),
+	(19, 'AufdruckService GmbH', 'T-Shirt Herren', 'T-Shirt Weiß XS', 'T-Shirt mit Aufdruck', 'Weiß', 'XS', 19.99, 27, NULL),
+	(20, 'AufdruckService GmbH', 'T-Shirt Herren', 'T-Shirt Weiß S', 'T-Shirt mit Aufdruck', 'Weiß', 'S', 19.99, 66, NULL),
+	(21, 'AufdruckService GmbH', 'T-Shirt Herren', 'T-Shirt Weiß M', 'T-Shirt mit Aufdruck', 'Weiß', 'M', 19.99, 12, NULL),
+	(22, 'AufdruckService GmbH', 'T-Shirt Herren', 'T-Shirt Weiß L', 'T-Shirt mit Aufdruck', 'Weiß', 'L', 19.99, 46, NULL),
+	(23, 'AufdruckService GmbH', 'T-Shirt Herren', 'T-Shirt Weiß XL', 'T-Shirt mit Aufdruck', 'Weiß', 'XL', 19.99, 83, NULL),
+	(24, 'AufdruckService GmbH', 'T-Shirt Herren', 'T-Shirt Weiß XXL', 'T-Shirt mit Aufdruck', 'Weiß', 'XXL', 19.99, 72, NULL),
+	(25, 'AufdruckService GmbH', 'T-Shirt Herren', 'T-Shirt Schwarz XS', 'T-Shirt mit Aufdruck', 'Schwarz', 'XS', 19.99, 88, NULL),
+	(26, 'AufdruckService GmbH', 'T-Shirt Herren', 'T-Shirt Schwarz S', 'T-Shirt mit Aufdruck', 'Schwarz', 'S', 19.99, 49, NULL),
+	(27, 'AufdruckService GmbH', 'T-Shirt Herren', 'T-Shirt Schwarz M', 'T-Shirt mit Aufdruck', 'Schwarz', 'M', 19.99, 75, NULL),
+	(28, 'AufdruckService GmbH', 'T-Shirt Herren', 'T-Shirt Schwarz L', 'T-Shirt mit Aufdruck', 'Schwarz', 'L', 19.99, 47, NULL),
+	(29, 'AufdruckService GmbH', 'T-Shirt Herren', 'T-Shirt Schwarz XL', 'T-Shirt mit Aufdruck', 'Schwarz', 'XL', 19.99, 22, NULL),
+	(30, 'AufdruckService GmbH', 'T-Shirt Herren', 'T-Shirt Schwarz XXL', 'T-Shirt mit Aufdruck', 'Schwarz', 'XXL', 19.99, 26, NULL),
+	(31, 'HOODie ForEVER UG', 'Hoodie Herren', 'Hoodie Grau XS', 'Hoodie mit Aufdruck', 'Grau', 'XS', 39.99, 55, NULL),
+	(32, 'HOODie ForEVER UG', 'Hoodie Herren', 'Hoodie Grau S', 'Hoodie mit Aufdruck', 'Grau', 'S', 39.99, 55, NULL),
+	(33, 'HOODie ForEVER UG', 'Hoodie Herren', 'Hoodie Grau M', 'Hoodie mit Aufdruck', 'Grau', 'M', 39.99, 63, NULL),
+	(34, 'HOODie ForEVER UG', 'Hoodie Herren', 'Hoodie Grau L', 'Hoodie mit Aufdruck', 'Grau', 'L', 39.99, 85, NULL),
+	(35, 'HOODie ForEVER UG', 'Hoodie Herren', 'Hoodie Grau XL', 'Hoodie mit Aufdruck', 'Grau', 'XL', 39.99, 55, NULL),
+	(36, 'HOODie ForEVER UG', 'Hoodie Herren', 'Hoodie Grau XXL', 'Hoodie mit Aufdruck', 'Grau', 'XXL', 39.99, 34, NULL),
+	(37, 'HOODie ForEVER UG', 'Hoodie Herren', 'Hoodie Blau XS', 'Hoodie mit Aufdruck', 'Blau', 'XS', 39.99, 77, NULL),
+	(38, 'HOODie ForEVER UG', 'Hoodie Herren', 'Hoodie Blau S', 'Hoodie mit Aufdruck', 'Blau', 'S', 39.99, 56, NULL),
+	(39, 'HOODie ForEVER UG', 'Hoodie Herren', 'Hoodie Blau M', 'Hoodie mit Aufdruck', 'Blau', 'M', 39.99, 76, NULL),
+	(40, 'HOODie ForEVER UG', 'Hoodie Herren', 'Hoodie Blau L', 'Hoodie mit Aufdruck', 'Blau', 'L', 39.99, 25, NULL),
+	(41, 'HOODie ForEVER UG', 'Hoodie Herren', 'Hoodie Blau XL', 'Hoodie mit Aufdruck', 'Blau', 'XL', 39.99, 41, NULL),
+	(42, 'HOODie ForEVER UG', 'Hoodie Herren', 'Hoodie Blau XXL', 'Hoodie mit Aufdruck', 'Blau', 'XXL', 39.99, 32, NULL),
+	(43, 'Druck und Geschmeidig SE', 'Hoodie Herren', 'Hoodie Rot XS', 'Hoodie mit Aufdruck', 'Rot', 'XS', 39.99, 45, NULL),
+	(44, 'Druck und Geschmeidig SE', 'Hoodie Herren', 'Hoodie Rot S', 'Hoodie mit Aufdruck', 'Rot', 'S', 39.99, 55, NULL),
+	(45, 'Druck und Geschmeidig SE', 'Hoodie Herren', 'Hoodie Rot M', 'Hoodie mit Aufdruck', 'Rot', 'M', 39.99, 34, NULL),
+	(46, 'Druck und Geschmeidig SE', 'Hoodie Herren', 'Hoodie Rot L', 'Hoodie mit Aufdruck', 'Rot', 'L', 39.99, 22, NULL),
+	(47, 'Druck und Geschmeidig SE', 'Hoodie Herren', 'Hoodie Rot XL', 'Hoodie mit Aufdruck', 'Rot', 'XL', 39.99, 11, NULL),
+	(48, 'Druck und Geschmeidig SE', 'Hoodie Herren', 'Hoodie Rot XXL', 'Hoodie mit Aufdruck', 'Rot', 'XXL', 39.99, 3, NULL),
+	(49, 'ReinerTragegenuss oHG', 'Hoodie Herren', 'Hoodie Schwarz XS', 'Hoodie mit Aufdruck', 'Schwarz', 'XS', 39.99, 45, NULL),
+	(50, 'ReinerTragegenuss oHG', 'Hoodie Herren', 'Hoodie Schwarz S', 'Hoodie mit Aufdruck', 'Schwarz', 'S', 39.99, 2, NULL),
+	(51, 'ReinerTragegenuss oHG', 'Hoodie Herren', 'Hoodie Schwarz M', 'Hoodie mit Aufdruck', 'Schwarz', 'M', 39.99, 35, NULL),
+	(52, 'ReinerTragegenuss oHG', 'Hoodie Herren', 'Hoodie Schwarz L', 'Hoodie mit Aufdruck', 'Schwarz', 'L', 39.99, 55, NULL),
+	(53, 'ReinerTragegenuss oHG', 'Hoodie Herren', 'Hoodie Schwarz XL', 'Hoodie mit Aufdruck', 'Schwarz', 'XL', 39.99, 74, NULL),
+	(54, 'ReinerTragegenuss oHG', 'Hoodie Herren', 'Hoodie Schwarz XXL', 'Hoodie mit Aufdruck', 'Schwarz', 'XXL', 39.99, 55, NULL),
+	(55, 'ReinerTragegenuss oHG', 'Hoodie Herren', 'Hoodie Weiß XS', 'Hoodie mit Aufdruck', 'Weiß', 'XS', 39.99, 45, NULL),
+	(56, 'ReinerTragegenuss oHG', 'Hoodie Herren', 'Hoodie Weiß S', 'Hoodie mit Aufdruck', 'Weiß', 'S', 39.99, 66, NULL),
+	(57, 'ReinerTragegenuss oHG', 'Hoodie Herren', 'Hoodie Weiß M', 'Hoodie mit Aufdruck', 'Weiß', 'M', 39.99, 44, NULL),
+	(58, 'ReinerTragegenuss oHG', 'Hoodie Herren', 'Hoodie Weiß L', 'Hoodie mit Aufdruck', 'Weiß', 'L', 39.99, 34, NULL),
+	(59, 'ReinerTragegenuss oHG', 'Hoodie Herren', 'Hoodie Weiß XL', 'Hoodie mit Aufdruck', 'Weiß', 'XL', 39.99, 41, NULL),
+	(60, 'ReinerTragegenuss oHG', 'Hoodie Herren', 'Hoodie Weiß XXL', 'Hoodie mit Aufdruck', 'Weiß', 'XXL', 39.99, 88, NULL),
+	(61, 'DruckIndustry', 'T-Shirt Damen', 'T-Shirt Blau XS', 'T-Shirt mit Aufdruck', 'Blau', 'XS', 19.99, 54, NULL),
+	(62, 'DruckIndustry', 'T-Shirt Damen', 'T-Shirt Blau S', 'T-Shirt mit Aufdruck', 'Blau', 'S', 19.99, 62, NULL),
+	(63, 'DruckIndustry', 'T-Shirt Damen', 'T-Shirt Blau M', 'T-Shirt mit Aufdruck', 'Blau', 'M', 19.99, 33, NULL),
+	(64, 'DruckIndustry', 'T-Shirt Damen', 'T-Shirt Blau L', 'T-Shirt mit Aufdruck', 'Blau', 'L', 19.99, 51, NULL),
+	(65, 'DruckIndustry', 'T-Shirt Damen', 'T-Shirt Blau XL', 'T-Shirt mit Aufdruck', 'Blau', 'XL', 19.99, 44, NULL),
+	(66, 'DruckIndustry', 'T-Shirt Damen', 'T-Shirt Blau XXL', 'T-Shirt mit Aufdruck', 'Blau', 'XXL', 19.99, 38, NULL),
+	(67, 'Druck und Geschmeidig SE', 'T-Shirt Damen', 'T-Shirt Grau XS', 'T-Shirt mit Aufdruck', 'Grau', 'XS', 19.99, 45, NULL),
+	(68, 'Druck und Geschmeidig SE', 'T-Shirt Damen', 'T-Shirt Grau S', 'T-Shirt mit Aufdruck', 'Grau', 'S', 19.99, 55, NULL),
+	(69, 'Druck und Geschmeidig SE', 'T-Shirt Damen', 'T-Shirt Grau M', 'T-Shirt mit Aufdruck', 'Grau', 'M', 19.99, 69, NULL),
+	(70, 'Druck und Geschmeidig SE', 'T-Shirt Damen', 'T-Shirt Grau L', 'T-Shirt mit Aufdruck', 'Grau', 'L', 19.99, 25, NULL),
+	(71, 'Druck und Geschmeidig SE', 'T-Shirt Damen', 'T-Shirt Grau XL', 'T-Shirt mit Aufdruck', 'Grau', 'XL', 19.99, 41, NULL),
+	(72, 'Druck und Geschmeidig SE', 'T-Shirt Damen', 'T-Shirt Grau XXL', 'T-Shirt mit Aufdruck', 'Grau', 'XXL', 19.99, 32, NULL),
+	(73, 'DruckIndustry', 'T-Shirt Damen', 'T-Shirt Rot XS', 'T-Shirt mit Aufdruck', 'Rot', 'XS', 19.99, 42, NULL),
+	(74, 'DruckIndustry', 'T-Shirt Damen', 'T-Shirt Rot S', 'T-Shirt mit Aufdruck', 'Rot', 'S', 19.99, 56, NULL),
+	(75, 'DruckIndustry', 'T-Shirt Damen', 'T-Shirt Rot M', 'T-Shirt mit Aufdruck', 'Rot', 'M', 19.99, 70, NULL),
+	(76, 'DruckIndustry', 'T-Shirt Damen', 'T-Shirt Rot L', 'T-Shirt mit Aufdruck', 'Rot', 'L', 19.99, 24, NULL),
+	(77, 'DruckIndustry', 'T-Shirt Damen', 'T-Shirt Rot XL', 'T-Shirt mit Aufdruck', 'Rot', 'XL', 19.99, 40, NULL),
+	(78, 'DruckIndustry', 'T-Shirt Damen', 'T-Shirt Rot XXL', 'T-Shirt mit Aufdruck', 'Rot', 'XXL', 19.99, 30, NULL),
+	(79, 'AufdruckService GmbH', 'T-Shirt Damen', 'T-Shirt Weiß XS', 'T-Shirt mit Aufdruck', 'Weiß', 'XS', 19.99, 27, NULL),
+	(80, 'AufdruckService GmbH', 'T-Shirt Damen', 'T-Shirt Weiß S', 'T-Shirt mit Aufdruck', 'Weiß', 'S', 19.99, 66, NULL),
+	(81, 'AufdruckService GmbH', 'T-Shirt Damen', 'T-Shirt Weiß M', 'T-Shirt mit Aufdruck', 'Weiß', 'M', 19.99, 12, NULL),
+	(82, 'AufdruckService GmbH', 'T-Shirt Damen', 'T-Shirt Weiß L', 'T-Shirt mit Aufdruck', 'Weiß', 'L', 19.99, 46, NULL),
+	(83, 'AufdruckService GmbH', 'T-Shirt Damen', 'T-Shirt Weiß XL', 'T-Shirt mit Aufdruck', 'Weiß', 'XL', 19.99, 83, NULL),
+	(84, 'AufdruckService GmbH', 'T-Shirt Damen', 'T-Shirt Weiß XXL', 'T-Shirt mit Aufdruck', 'Weiß', 'XXL', 19.99, 72, NULL),
+	(85, 'AufdruckService GmbH', 'T-Shirt Damen', 'T-Shirt Schwarz XS', 'T-Shirt mit Aufdruck', 'Schwarz', 'XS', 19.99, 88, NULL),
+	(86, 'AufdruckService GmbH', 'T-Shirt Damen', 'T-Shirt Schwarz S', 'T-Shirt mit Aufdruck', 'Schwarz', 'S', 19.99, 49, NULL),
+	(87, 'AufdruckService GmbH', 'T-Shirt Damen', 'T-Shirt Schwarz M', 'T-Shirt mit Aufdruck', 'Schwarz', 'M', 19.99, 75, NULL),
+	(88, 'AufdruckService GmbH', 'T-Shirt Damen', 'T-Shirt Schwarz L', 'T-Shirt mit Aufdruck', 'Schwarz', 'L', 19.99, 47, NULL),
+	(89, 'AufdruckService GmbH', 'T-Shirt Damen', 'T-Shirt Schwarz XL', 'T-Shirt mit Aufdruck', 'Schwarz', 'XL', 19.99, 22, NULL),
+	(90, 'AufdruckService GmbH', 'T-Shirt Damen', 'T-Shirt Schwarz XXL', 'T-Shirt mit Aufdruck', 'Schwarz', 'XXL', 19.99, 26, NULL),
+	(91, 'HOODie ForEVER UG', 'Hoodie Damen', 'Hoodie Grau XS', 'Hoodie mit Aufdruck', 'Grau', 'XS', 39.99, 55, NULL),
+	(92, 'HOODie ForEVER UG', 'Hoodie Damen', 'Hoodie Grau S', 'Hoodie mit Aufdruck', 'Grau', 'S', 39.99, 55, NULL),
+	(93, 'HOODie ForEVER UG', 'Hoodie Damen', 'Hoodie Grau M', 'Hoodie mit Aufdruck', 'Grau', 'M', 39.99, 63, NULL),
+	(94, 'HOODie ForEVER UG', 'Hoodie Damen', 'Hoodie Grau L', 'Hoodie mit Aufdruck', 'Grau', 'L', 39.99, 85, NULL),
+	(95, 'HOODie ForEVER UG', 'Hoodie Damen', 'Hoodie Grau XL', 'Hoodie mit Aufdruck', 'Grau', 'XL', 39.99, 55, NULL),
+	(96, 'HOODie ForEVER UG', 'Hoodie Damen', 'Hoodie Grau XXL', 'Hoodie mit Aufdruck', 'Grau', 'XXL', 39.99, 34, NULL),
+	(97, 'HOODie ForEVER UG', 'Hoodie Damen', 'Hoodie Blau XS', 'Hoodie mit Aufdruck', 'Blau', 'XS', 39.99, 77, NULL),
+	(98, 'HOODie ForEVER UG', 'Hoodie Damen', 'Hoodie Blau S', 'Hoodie mit Aufdruck', 'Blau', 'S', 39.99, 56, NULL),
+	(99, 'HOODie ForEVER UG', 'Hoodie Damen', 'Hoodie Blau M', 'Hoodie mit Aufdruck', 'Blau', 'M', 39.99, 76, NULL),
+	(100, 'HOODie ForEVER UG', 'Hoodie Damen', 'Hoodie Blau L', 'Hoodie mit Aufdruck', 'Blau', 'L', 39.99, 25, NULL),
+	(101, 'HOODie ForEVER UG', 'Hoodie Damen', 'Hoodie Blau XL', 'Hoodie mit Aufdruck', 'Blau', 'XL', 39.99, 41, NULL),
+	(102, 'HOODie ForEVER UG', 'Hoodie Damen', 'Hoodie Blau XXL', 'Hoodie mit Aufdruck', 'Blau', 'XXL', 39.99, 32, NULL),
+	(103, 'Druck und Geschmeidig SE', 'Hoodie Damen', 'Hoodie Rot XS', 'Hoodie mit Aufdruck', 'Rot', 'XS', 39.99, 45, NULL),
+	(104, 'Druck und Geschmeidig SE', 'Hoodie Damen', 'Hoodie Rot S', 'Hoodie mit Aufdruck', 'Rot', 'S', 39.99, 55, NULL),
+	(105, 'Druck und Geschmeidig SE', 'Hoodie Damen', 'Hoodie Rot M', 'Hoodie mit Aufdruck', 'Rot', 'M', 39.99, 34, NULL),
+	(106, 'Druck und Geschmeidig SE', 'Hoodie Damen', 'Hoodie Rot L', 'Hoodie mit Aufdruck', 'Rot', 'L', 39.99, 22, NULL),
+	(107, 'Druck und Geschmeidig SE', 'Hoodie Damen', 'Hoodie Rot XL', 'Hoodie mit Aufdruck', 'Rot', 'XL', 39.99, 11, NULL),
+	(108, 'Druck und Geschmeidig SE', 'Hoodie Damen', 'Hoodie Rot XXL', 'Hoodie mit Aufdruck', 'Rot', 'XXL', 39.99, 3, NULL),
+	(109, 'ReinerTragegenuss oHG', 'Hoodie Damen', 'Hoodie Schwarz XS', 'Hoodie mit Aufdruck', 'Schwarz', 'XS', 39.99, 45, NULL),
+	(110, 'ReinerTragegenuss oHG', 'Hoodie Damen', 'Hoodie Schwarz S', 'Hoodie mit Aufdruck', 'Schwarz', 'S', 39.99, 2, NULL),
+	(111, 'ReinerTragegenuss oHG', 'Hoodie Damen', 'Hoodie Schwarz M', 'Hoodie mit Aufdruck', 'Schwarz', 'M', 39.99, 35, NULL),
+	(112, 'ReinerTragegenuss oHG', 'Hoodie Damen', 'Hoodie Schwarz L', 'Hoodie mit Aufdruck', 'Schwarz', 'L', 39.99, 55, NULL),
+	(113, 'ReinerTragegenuss oHG', 'Hoodie Damen', 'Hoodie Schwarz XL', 'Hoodie mit Aufdruck', 'Schwarz', 'XL', 39.99, 74, NULL),
+	(114, 'ReinerTragegenuss oHG', 'Hoodie Damen', 'Hoodie Schwarz XXL', 'Hoodie mit Aufdruck', 'Schwarz', 'XXL', 39.99, 55, NULL),
+	(115, 'ReinerTragegenuss oHG', 'Hoodie Damen', 'Hoodie Weiß XS', 'Hoodie mit Aufdruck', 'Weiß', 'XS', 39.99, 45, NULL),
+	(116, 'ReinerTragegenuss oHG', 'Hoodie Damen', 'Hoodie Weiß S', 'Hoodie mit Aufdruck', 'Weiß', 'S', 39.99, 66, NULL),
+	(117, 'ReinerTragegenuss oHG', 'Hoodie Damen', 'Hoodie Weiß M', 'Hoodie mit Aufdruck', 'Weiß', 'M', 39.99, 44, NULL),
+	(118, 'ReinerTragegenuss oHG', 'Hoodie Damen', 'Hoodie Weiß L', 'Hoodie mit Aufdruck', 'Weiß', 'L', 39.99, 34, NULL),
+	(119, 'ReinerTragegenuss oHG', 'Hoodie Damen', 'Hoodie Weiß XL', 'Hoodie mit Aufdruck', 'Weiß', 'XL', 39.99, 41, NULL),
+	(120, 'ReinerTragegenuss oHG', 'Hoodie Damen', 'Hoodie Weiß XXL', 'Hoodie mit Aufdruck', 'Weiß', 'XXL', 39.99, 88, NULL);
+
+-- Exportiere Struktur von Tabelle webshop.produktpreview
+CREATE TABLE IF NOT EXISTS `produktpreview` (
+  `produkt_preid` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(50) DEFAULT NULL,
+  `Preis` float DEFAULT NULL,
+  `Beschreibung` text DEFAULT NULL,
+  PRIMARY KEY (`produkt_preid`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Exportiere Daten aus Tabelle webshop.produktpreview: ~9 rows (ungefähr)
+INSERT INTO `produktpreview` (`produkt_preid`, `Name`, `Preis`, `Beschreibung`) VALUES
+	(1, 'Tshirt Blau ', 19.99, NULL),
+	(2, 'Tshirt Rot', 19.99, NULL),
+	(3, 'Tshirt Weiss', 19.99, NULL),
+	(4, 'Tshirt Schwarz', 19.99, NULL),
+	(5, 'Tshirt Grau', 19.99, NULL),
+	(6, ' Hoodie Blau', 39.99, NULL),
+	(7, 'Hoodie Grau', 39.99, NULL),
+	(8, 'Hoodie Rot', 39.99, NULL),
+	(9, 'Hoodie Weiss', 39.99, NULL),
+	(10, 'Hoodie Schwarz', 39.99, NULL);
 
 -- Exportiere Struktur von Tabelle webshop.rechnungsadresse
 CREATE TABLE IF NOT EXISTS `rechnungsadresse` (
@@ -249,7 +268,6 @@ CREATE TABLE IF NOT EXISTS `rechnungsadresse` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Exportiere Daten aus Tabelle webshop.rechnungsadresse: ~0 rows (ungefähr)
-DELETE FROM `rechnungsadresse`;
 
 -- Exportiere Struktur von Tabelle webshop.zustellungsadresse
 CREATE TABLE IF NOT EXISTS `zustellungsadresse` (
@@ -262,7 +280,6 @@ CREATE TABLE IF NOT EXISTS `zustellungsadresse` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Exportiere Daten aus Tabelle webshop.zustellungsadresse: ~0 rows (ungefähr)
-DELETE FROM `zustellungsadresse`;
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
