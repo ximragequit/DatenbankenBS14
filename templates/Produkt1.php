@@ -16,8 +16,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
   </head>
   <body>
-    
-  <?php require_once __DIR__.'/header.php'?>
+ <?php 
+   require_once __DIR__.'/header.php'?>
     <br> <br> <br> <br><br><br><br>
     <div class = "card-wrapper">
       <div class = "cards">
@@ -92,9 +92,7 @@
 
           <div class = "purchase-info">
             <input type = "number" min = "0" value = "1">
-            <button type = "button" class = "btn">
-              Add to Cart <i class = "fas fa-shopping-cart"></i>
-            </button>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="index.php/cart/add/1" class="btn btn-success btn-sm">In den Warenkorb</a></div>
             <button type = "button" class = "btn">Compare</button>
           </div>
 

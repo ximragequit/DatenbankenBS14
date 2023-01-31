@@ -130,6 +130,11 @@ if(strpos($route,'/Produkt3') !== false){
   exit();
 }
 
+if(strpos($route,'/Produkt4') !== false){
+  require __DIR__.'/templates/Produkt4.php';
+  exit();
+}
+
 
 
 

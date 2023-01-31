@@ -28,9 +28,7 @@
     <form class="d-flex">
                         <button class="btn btn-outline-dark" type="submit">
                             <i class="bi-cart-fill me-1"></i>
-                                <li class="nav-item">
                                     <a href="index.php/cart">Warenkorb <span class="badge bg-dark text-white ms-1 rounded-pill"><?= $countCartItems ?></span></a>
-                                </li>
                         </button>
                     </form>
 </div>
