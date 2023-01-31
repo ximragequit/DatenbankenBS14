@@ -115,6 +115,24 @@ if(strpos($route,'/checkout') !== false){
   exit();
 }
 
+if(strpos($route,'/Produkt1') !== false){
+  require __DIR__.'/templates/Produkt1.php';
+  exit();
+}
+
+if(strpos($route,'/Produkt2') !== false){
+  require __DIR__.'/templates/Produkt2.php';
+  exit();
+}
+
+if(strpos($route,'/Produkt3') !== false){
+  require __DIR__.'/templates/Produkt3.php';
+  exit();
+}
+
+
+
+
 if(strpos($route,'/logout') !== false){
   $redirectTarget = $baseUrl.'index.php';
   if(isset($_SESSION['redirectTarget'])){
@@ -390,6 +408,7 @@ if(!$orderData){
   echo "Daten wurden nicht gefunden";
   exit();
 }
+
 
 require_once __DIR__.'/templates/invoice.php';
 exit();
