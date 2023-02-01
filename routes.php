@@ -43,6 +43,7 @@ if(strpos($route,'/cart/add/') !== false){
   header("Location: ".$baseUrl."index.php");
   exit();
 }
+
 if(strpos($route,'/cart') !== false){
 
   $cartItems = getCartItemsForUserId($userId);

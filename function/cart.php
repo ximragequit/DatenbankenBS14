@@ -15,6 +15,7 @@ function addProductToCart(int $userId,int $productId,int $quantity = 1){
   $statement->execute($data);
 }
 
+
 function countProductsInCart(?int $userId){
   if(null === $userId){
     return 0;
@@ -54,7 +55,7 @@ function getCartItemsForUserId(?int $userId):array{
   return $found;
 }
 
-function getCartSumForUserId(?int $userId): int{
+function getCartSumForUserId(?int $userId): string{
   if(null === $userId){
     return 0;
   }
@@ -66,7 +67,7 @@ function getCartSumForUserId(?int $userId): int{
   if($result === false){
     return 0;
   }
-  return (int)$result->fetchColumn();
+  return (float)$result->fetchColumn();
 }
 
 function deleteProductInCartForUserId(int $userId,int $productId):int{

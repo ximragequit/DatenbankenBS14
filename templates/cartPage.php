@@ -1,21 +1,19 @@
 <?php require_once __DIR__.'/header.php'?>
 <section class="container" id="cartItems">
-  <div clas="row">
-    <h2>Warenkorb</h2>
+  <div class="row">
+    <h2>Warenkorb</h2><br><br><br>
   </div>
   <div class="row cartItemHeader">
-    <div class="col-12 text-right">
-      Preis
-    </div>
+   
   </div>
   <?php foreach($cartItems as $cartItem):?>
   <div class="row cartItem">
-      <?php include __DIR__.'/cartItem.php';?>
+      <?php include __DIR__.'/cartItem.php';?><br>
   </div>
   <?php endforeach;?>
   <div class="row">
     <div class="col-12 text-right">
-      Summe (<?= $countCartItems ?> Artikel): <span class="price"><?= $cartSum?></span> €</div>
+      <b>Summe (<?= $countCartItems ?> Artikel): <span class="price"><?= $cartSum?></span> €</div></b>
     </div>
   </div>
   <div class="row">

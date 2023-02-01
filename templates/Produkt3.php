@@ -68,32 +68,28 @@
 
           <div class = "product-price">
             
-            <p class = "new-price">New Price: <span>19,99€</span></p>
+          <p class = "new-price">Neuer Preis <span>14,99 €</span></p>
           </div>
 
           <div class = "product-detail">
-            <h2>about this item: </h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eveniet veniam tempora fuga tenetur placeat sapiente architecto illum soluta consequuntur, aspernatur quidem at sequi ipsa!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, perferendis eius. Dignissimos, labore suscipit. Unde.</p>
+            <h2>Über das Produkt: </h2>
+            <p>Dies ist der Merch von der BHH und der ITECH. Es symbolisiert die enge Zusammenarbeit zwischen Lernorten.</p>
+            <p>Das Tshirt besteht aus hochwertiger Baumwolle und entspricht dem hohen Qualitätsmaßstab, den wir uns gesetzt haben!</p>
             <ul>
-              
-              <li style="margin-right: 10cm;">
-                <select size="1" class="form-select form-select-sm" aria-label=".form-select-lg example">  
-                  <option>S</option>
-                  <option>M</option>
-                  <option selected>L</option>
-                  <option>XL</option>
-                </select></li>
-              <li>Category: <span>Shoes</span></li>
-              <li>Shipping Area: <span>All over the world</span></li>
-              <li>Shipping Fee: <span>Free</span></li>
+                <select style="margin-right: 10cm;" size="1" class="form-select form-select-sm" aria-label=".form-select-lg example">  
+                  <option>Small (S)</option>
+                  <option>Medium (M)</option>
+                  <option selected>Large (L)</option>
+                  <option>Extra Large (XL)</option>
+                </select><br>
+              <b>Category: </b><span>T-Shirt</span><br>
+              <b>Shipping Area:</b> <span>All over the world</span><br>
+              <b>Shipping Fee:</b> <span>Free</span>
             </ul>
-            
           </div>
           <div class = "purchase-info">
-            <input type = "number" min = "0" value = "1">
-            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="index.php/cart/add/3" class="btn btn-success btn-sm">In den Warenkorb</a></div>
-            <button type = "button" class = "btn">Compare</button>
+            <input type = "number" min = "0" value = "1"><br>
+            <a class="btn btn-outline-dark mt-auto" href="index.php/cart/add/3" class="btn btn-success btn-sm">In den Warenkorb</a>
           </div>
 
           <div class = "social-links">

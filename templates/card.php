@@ -10,7 +10,7 @@
                                     <!-- Product name-->
                                     <h5 class="fw-bolder"><?= $product['title']?></h5>
                                     <!-- Product price-->
-                                    <?= $product['price'] ?>
+                                    <p><?= $product['price'] ?> €</p>
                                 </div>
                             </div>
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
